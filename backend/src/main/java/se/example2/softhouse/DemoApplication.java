@@ -6,7 +6,9 @@ import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 import org.skife.jdbi.v2.DBI;
-import se.example2.softhouse.Note.NoteResource;
+import se.example2.softhouse.Note.NoteDAO;
+import se.example2.softhouse.Note.NoteResource1;
+//import se.example2.softhouse.Note.NoteResource;
 
 /**
  * Created by hxs on 2016-08-16.
@@ -17,7 +19,10 @@ public class DemoApplication extends Application<DemoConfiguration> {
     public void run(DemoConfiguration configuration, Environment environment) throws Exception {
         final DBIFactory factory = new DBIFactory();
         final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "h2");
-        environment.jersey().register(new NoteResource(configuration.getDefaultNote()));
+        final NoteDAO noteDAO = jdbi.onDemand(NoteDAO.class);
+        final NoteResource1 noteResource1 = new NoteResource1(noteDAO);
+        environment.jersey().register(noteResource1);
+        //environment.jersey().register(new NoteResource(configuration.getDefaultNote()));
     }
 
     @Override
