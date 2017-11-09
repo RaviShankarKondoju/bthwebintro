@@ -2,9 +2,10 @@ package se.example2.softhouse;
 
 import com.bazaarvoice.dropwizard.assets.ConfiguredAssetsBundle;
 import io.dropwizard.Application;
-import io.dropwizard.assets.AssetsBundle;
+import io.dropwizard.jdbi.DBIFactory;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
+import org.skife.jdbi.v2.DBI;
 import se.example2.softhouse.Note.NoteResource;
 
 /**
@@ -14,6 +15,8 @@ public class DemoApplication extends Application<DemoConfiguration> {
 
     @Override
     public void run(DemoConfiguration configuration, Environment environment) throws Exception {
+        final DBIFactory factory = new DBIFactory();
+        final DBI jdbi = factory.build(environment, configuration.getDataSourceFactory(), "h2");
         environment.jersey().register(new NoteResource(configuration.getDefaultNote()));
     }
 
