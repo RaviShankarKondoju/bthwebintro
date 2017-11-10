@@ -1,0 +1,39 @@
+body {
+
+    font-size: 30px;
+    font-family: 'PT Serif', serif;
+  background-color: whitesmoke;
+
+}
+.navbar-default {
+    background-color: lightblue;
+
+}
+.navbar-fixed-top {
+  min-height: 80px;
+
+}
+.navbar-header > a {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 80px;
+    font-size: 48px;
+    font-family: 'Vollkorn SC', serif;
+}
+.navbar-nav > li > a {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  line-height: 80px;
+    font-size: 30px;
+    font-family: 'PT Serif', serif;
+
+}
+
+@media (max-width: 767px) {
+  .navbar-nav > li > a {
+    line-height: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+      }
+
+}
